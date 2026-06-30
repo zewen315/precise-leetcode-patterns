@@ -15,9 +15,7 @@ def runBFS(root: Optional[Node]) -> None:
 
     q = deque([root])
     while q:
-        # --- logic begin ---
         print([node.val for node in q])
-        # --- logic end ---
 
         newq = deque()
         while q:
