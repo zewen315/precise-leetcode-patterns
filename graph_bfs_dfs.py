@@ -1,6 +1,7 @@
 from collections import deque
 from typing import List, Optional
 
+
 class Node:
     def __init__(self, val = 0, neighbors = None):
         self.val = val
@@ -56,6 +57,7 @@ def _createGraph(edges: List[List[int]]) -> Optional[Node]:
         mapping[b].neighbors.append(mapping[a])
     
     return mapping[1]
+
 
 if __name__ == "__main__":
     # undirected graph example
