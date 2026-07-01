@@ -7,6 +7,26 @@ class Node:
         self.neighbors = neighbors if neighbors is not None else []
 
 
+def runBFS(node: Optional[Node]) -> None:
+    if node is None:
+        return
+
+    visited = {node}
+    q = deque([node])
+
+    while q:
+        level = [n.val for n in q]
+        print(level)
+
+        newq = deque()
+        for n in q:
+            for neighbor in n.neighbors:
+                if neighbor not in visited:
+                    visited.add(neighbor)
+                    newq.append(neighbor)
+        q = newq
+
+
 def runDFS(node: Optional[Node]) -> None:
     visited = set()
 
@@ -45,4 +65,8 @@ if __name__ == "__main__":
     # 3 - 4 - 5
     edges = [[1, 2], [1, 3], [2, 4], [3, 4], [4, 1], [4, 5]]
 
+    print("Iteratively run bfs:")
+    runBFS(_createGraph(edges))
+
+    print("Recursively run dfs:")
     runDFS(_createGraph(edges))

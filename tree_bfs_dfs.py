@@ -27,6 +27,27 @@ def runBFS(root: Optional[Node]) -> None:
         q = newq
 
 
+def runDFS(root: Optional[Node]) -> None:
+    levels = []
+    preorder = []
+
+    def dfs(node, depth):
+        if not node:
+            return None
+        
+        preorder.append(node.val)
+        if len(levels) == depth:
+            levels.append([])
+
+        levels[depth].append(node.val)
+        dfs(node.left, depth + 1)
+        dfs(node.right, depth + 1)
+
+    dfs(root, 0)
+    print(preorder)
+    print(levels)
+
+
 def _createTree(nodes: List[Optional[int]]) -> Optional[Node]:
     # 1  2 3  4 5 6 7 ...
     # root i, left i * 2, right: i * 2 + 1
@@ -57,3 +78,6 @@ if __name__ == "__main__":
 
     print("Iteratively run bfs:")
     runBFS(_createTree(tree))
+
+    print("Recursively run dfs:")
+    runDFS(_createTree(tree))
